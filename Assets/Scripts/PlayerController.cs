@@ -17,15 +17,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 0.1f;
 
     private bool isGrounded = true;
-
+    
     // Movement buttons
     private bool forwardPressed;
     private bool backwardPressed;
     private bool leftPressed;
     private bool rightPressed;
 
+    // camera variables
     private Vector2 lookInput;
     private float cameraPitch;
+    private float cameraYaw;
+    private float cameraMaxPitch = 80.0f;
+    private float cameraMinPitch = -80.0f;
+
 
     private void Start()
     {
@@ -44,37 +49,33 @@ public class PlayerController : MonoBehaviour
     }
 
     // Separate movement inputs
-    public void MoveForward(InputAction.CallbackContext context)
+    public void MoveForward(InputAction.CallbackContext context) // W
     {
         forwardPressed = context.ReadValueAsButton();
     }
 
-    public void MoveBackward(InputAction.CallbackContext context)
+    public void MoveBackward(InputAction.CallbackContext context) // S
     {
         backwardPressed = context.ReadValueAsButton();
     }
 
-    public void MoveLeft(InputAction.CallbackContext context)
+    public void MoveLeft(InputAction.CallbackContext context) // A
     {
         leftPressed = context.ReadValueAsButton();
     }
 
-    public void MoveRight(InputAction.CallbackContext context)
+    public void MoveRight(InputAction.CallbackContext context) // D
     {
         rightPressed = context.ReadValueAsButton();
     }
 
-    public void CameraInput(InputAction.CallbackContext context)
+    public void CameraInput(InputAction.CallbackContext context) // Mouse
     {
-        lookInput = context.ReadValue<Vector2>();
+        lookInput = context.ReadValue<Vector2>(); // store how much the mouse went horizontally and vertically in lookInput
 
-        if (context.canceled)
-        {
-            lookInput = Vector2.zero;
-        }
     }
 
-    public void PlayerJump(InputAction.CallbackContext context)
+    public void PlayerJump(InputAction.CallbackContext context) // Space
     {
         if (context.performed && isGrounded)
         {
@@ -95,49 +96,48 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        Vector3 movement = Vector3.zero;
+        // get camera directions
+        Vector3 forward = cameraPivot.forward;
+        Vector3 right = cameraPivot.right;
+
+        // keep vertical velocity 0 so the player doesn't gain upwards speed when looking up
+        forward.y = 0f;
+        right.y = 0f;
+
+        Vector3 movement = Vector3.zero; // variable to keep track of movement direction
 
         if (forwardPressed)
-            movement += transform.forward;
-
-        if (backwardPressed)
-            movement -= transform.forward;
-
-        if (leftPressed)
-            movement -= transform.right;
-
-        if (rightPressed)
-            movement += transform.right;
-
-        // Prevent faster diagonal movement
-        movement = movement.normalized;
-
-        // Apply movement force
-        rb.AddForce(movement * moveSpeed, ForceMode.Acceleration);
-
-        // Limit horizontal movement speed
-        Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-
-        if (horizontalVelocity.magnitude > maxSpeed)
         {
-            Vector3 limitedVelocity = horizontalVelocity.normalized * maxSpeed;
-
-            rb.linearVelocity = new Vector3(limitedVelocity.x, rb.linearVelocity.y, limitedVelocity.z);
+            movement += forward;
         }
+        if (backwardPressed)
+        {
+            movement -= forward;
+        }
+        if (leftPressed)
+        {
+            movement -= right;
+        }
+        if (rightPressed)
+        {
+            movement += right;
+        }
+
+        rb.AddForce(movement * moveSpeed, ForceMode.Acceleration);  
     }
 
     private void CameraRotation()
     {
+        // multiply lookInput by mouseSensitivity to increase/decrease the magnitude at which the camera's Yaw and Pitch are afffected
         float mouseX = lookInput.x * mouseSensitivity;
         float mouseY = lookInput.y * mouseSensitivity;
-
-        // Rotate player left/right
-        transform.Rotate(Vector3.up * mouseX);
-
-        // Rotate camera up/down
+        
+        cameraYaw += mouseX;
         cameraPitch -= mouseY;
-        cameraPitch = Mathf.Clamp(cameraPitch, -90f, 90f);
 
-        cameraPivot.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f);
+        cameraPitch = Mathf.Clamp(cameraPitch, cameraMinPitch, cameraMaxPitch); // limtis how far the camera can rotate up and down
+
+        cameraPivot.rotation = Quaternion.Euler(cameraPitch, cameraYaw, 0f); // change camera's rotation to cameraPitch and -Yaw values
+
     }
 }
