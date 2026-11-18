@@ -2,8 +2,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// source: https://www.youtube.com/watch?v=1b7H203kBVg
-
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
@@ -15,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 7f;
-    [SerializeField] private float GroundPoundForce = 15f;
+    [SerializeField] private float groundPoundForce = 15f;
     [SerializeField] private float mouseSensitivity = 0.1f;
 
     [SerializeField] private bool isGrounded = true;
@@ -81,7 +79,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            rb.AddForce(Vector3.down * GroundPoundForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.down * groundPoundForce, ForceMode.Impulse);
         }
     }
 

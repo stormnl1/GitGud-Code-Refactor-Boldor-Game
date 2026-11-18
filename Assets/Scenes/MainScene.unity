@@ -627,10 +627,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   Player: {fileID: 521934718}
   scoreText: {fileID: 465665300}
-  winScreen: {fileID: 0}
-  GameOverScreen: {fileID: 0}
-  GameOver: 0
-  gameOverBoundary: -20
 --- !u!4 &1300272642
 Transform:
   m_ObjectHideFlags: 0
@@ -957,6 +953,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6602543666947327531, guid: 27dc3cdeb1b5e854d91c7ed768778db9, type: 3}
       propertyPath: GroundPoundForce
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602543666947327531, guid: 27dc3cdeb1b5e854d91c7ed768778db9, type: 3}
+      propertyPath: groundPoundForce
       value: 1500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
