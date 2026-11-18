@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// source: https://www.youtube.com/watch?v=1b7H203kBVg
+
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
@@ -14,9 +16,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float jumpForce = 7f;
+    [SerializeField] private float GroundPoundForce = 15f;
     [SerializeField] private float mouseSensitivity = 0.1f;
 
-    private bool isGrounded = true;
+    [SerializeField] private bool isGrounded = true;
     
     // Movement buttons
     private bool forwardPressed;
@@ -75,12 +78,21 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void GroundPound(InputAction.CallbackContext context) // Ctrl
+    {
+        if (context.performed)
+        {
+            rb.AddForce(Vector3.down * GroundPoundForce, ForceMode.Impulse);
+        }
+    }
+
     public void PlayerJump(InputAction.CallbackContext context) // Space
     {
         if (context.performed && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
+            Debug.Log("Jump");
         }
     }
 
@@ -123,7 +135,7 @@ public class PlayerController : MonoBehaviour
             movement += right;
         }
 
-        rb.AddForce(movement * moveSpeed, ForceMode.Acceleration);  
+        rb.AddForce(movement * moveSpeed, ForceMode.Acceleration); // Accelerates the player in the movement direction by moveSpeed
     }
 
     private void CameraRotation()
@@ -138,6 +150,5 @@ public class PlayerController : MonoBehaviour
         cameraPitch = Mathf.Clamp(cameraPitch, cameraMinPitch, cameraMaxPitch); // limtis how far the camera can rotate up and down
 
         cameraPivot.rotation = Quaternion.Euler(cameraPitch, cameraYaw, 0f); // change camera's rotation to cameraPitch and -Yaw values
-
     }
 }
