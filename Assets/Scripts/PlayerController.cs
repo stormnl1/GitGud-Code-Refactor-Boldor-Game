@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     [Space]
     [Header("Settings")]
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private float GroundPoundForce = 15f;
     [SerializeField] private float mouseSensitivity = 0.1f;
@@ -96,14 +95,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) // Allow player to jump after a collision
     {
         isGrounded = true;
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerEnter(Collider other) // Destroy target when player collides with it
     {
-        isGrounded = false;
+        if (other.gameObject.CompareTag("TargetPointTrigger"))
+        {   
+            isGrounded = true;
+            Destroy(other.gameObject);
+        }   
     }
 
     private void MovePlayer()
