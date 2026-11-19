@@ -14,9 +14,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private float groundPoundForce = 15f;
+    [SerializeField] private float dashForce;
     [SerializeField] private float mouseSensitivity = 0.1f;
-
-    [SerializeField] private bool isGrounded = true;
+    [SerializeField] private float maxDashSpeed; // a greater speed than this disables DashBoost
+    [SerializeField] private float dashCooldown = 0.5f;
+    
+    private bool isGrounded = true;
+    private float lastDashTime; // keeps track of how much time has passed after the player used DashBoost
+   [SerializeField] private float playerSpeed; // keeps track of player's velocity
     
     // Movement buttons
     private bool forwardPressed;
@@ -30,7 +35,7 @@ public class PlayerController : MonoBehaviour
     private float cameraYaw;
     private float cameraMaxPitch = 80.0f;
     private float cameraMinPitch = -80.0f;
-
+    
 
     private void Start()
     {
@@ -41,6 +46,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         CameraRotation();
+        PlayerSpeed();
     }
 
     private void FixedUpdate()
@@ -72,7 +78,15 @@ public class PlayerController : MonoBehaviour
     public void CameraInput(InputAction.CallbackContext context) // Mouse
     {
         lookInput = context.ReadValue<Vector2>(); // store how much the mouse went horizontally and vertically in lookInput
+    }
 
+    public void DashBoost(InputAction.CallbackContext context) // Shift
+    {
+        if (context.performed && Time.time >= lastDashTime + dashCooldown && isGrounded && playerSpeed < maxDashSpeed)
+        {
+            rb.AddForce(cameraPivot.forward * dashForce, ForceMode.Impulse);
+            lastDashTime = Time.time;
+        }
     }
 
     public void GroundPound(InputAction.CallbackContext context) // Ctrl
@@ -89,7 +103,6 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
-            Debug.Log("Jump");
         }
     }
 
@@ -151,5 +164,10 @@ public class PlayerController : MonoBehaviour
         cameraPitch = Mathf.Clamp(cameraPitch, cameraMinPitch, cameraMaxPitch); // limtis how far the camera can rotate up and down
 
         cameraPivot.rotation = Quaternion.Euler(cameraPitch, cameraYaw, 0f); // change camera's rotation to cameraPitch and -Yaw values
+    }
+
+    private void PlayerSpeed()
+    {
+        playerSpeed = rb.linearVelocity.magnitude;
     }
 }
