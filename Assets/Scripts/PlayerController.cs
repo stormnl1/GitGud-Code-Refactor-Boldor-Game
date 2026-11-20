@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
     public void DashBoost(InputAction.CallbackContext context) // Shift
     {
-        if (context.performed && Time.time >= lastDashTime + dashCooldown && isGrounded && playerSpeed < maxDashSpeed)
+        if (context.performed && Time.time >= lastDashTime + dashCooldown && playerSpeed < maxDashSpeed)
         {
             rb.AddForce(cameraPivot.forward * dashForce, ForceMode.Impulse);
             lastDashTime = Time.time;
