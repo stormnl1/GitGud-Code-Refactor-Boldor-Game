@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public GameObject Player;
     public TextMeshProUGUI scoreText;
 
+    public bool GameOver { get; set; } = false;
+
     private int targetsLeft;
 
     // Update is called once per frame

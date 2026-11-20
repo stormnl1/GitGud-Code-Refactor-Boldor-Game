@@ -4,6 +4,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool IsInvincible // property to keep track of wether the player is going fast enough to destroy objects with tag "Destructible"
+    {
+        get
+        {
+            return rb.linearVelocity.magnitude >= maxDashSpeed;   
+        }
+    }
+
     [Header("References")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Transform cameraTransform;
@@ -21,8 +29,8 @@ public class PlayerController : MonoBehaviour
     
     private bool isGrounded = true;
     private float lastDashTime; // keeps track of how much time has passed after the player used DashBoost
-   [SerializeField] private float playerSpeed; // keeps track of player's velocity
-    
+    [SerializeField] private float playerSpeed; // keeps track of player's velocity
+
     // Movement buttons
     private bool forwardPressed;
     private bool backwardPressed;
@@ -106,9 +114,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision) // Allow player to jump after a collision
+    private void OnCollisionEnter(Collision collision) 
     {
-        isGrounded = true;
+        isGrounded = true; // Allow player to jump after a collision
+
+        if (collision.gameObject.CompareTag("Destructible") && IsInvincible == true) // Destroys other object wiht tag "Destructible" when player goes fast enough
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other) // Destroy target when player collides with it
