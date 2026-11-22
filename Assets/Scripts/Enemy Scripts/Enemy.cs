@@ -27,8 +27,8 @@ public abstract class Enemy : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, player.transform.position) < detectionRange) // Check if the player is within the detection range
         {
-            Vector3 PlayerDirection = (player.transform.position - transform.position).normalized; // Calculate the direction towards the player
-            EnemyRb.AddForce(PlayerDirection * speed * Time.deltaTime, ForceMode.VelocityChange); // Move towards the player
+            Vector3 lookDirection = (player.transform.position - transform.position).normalized; // Calculate the direction towards the player
+            EnemyRb.AddForce(lookDirection * speed); // Move towards the player
         }
     }
 

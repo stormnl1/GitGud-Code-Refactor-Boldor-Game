@@ -5,18 +5,19 @@ TagManager:
   serializedVersion: 3
   tags:
   - TargetPointTrigger
+  - specialCrate
   - Destructible
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Target
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - InvisibleWall
+  - EnemyStoppedByInvisWall
+  - InvisiblePlatform
   - 
   - 
   - 
