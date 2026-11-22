@@ -1439,6 +1439,14 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 3395167134321741993, guid: 27dc3cdeb1b5e854d91c7ed768778db9, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395167134321741993, guid: 27dc3cdeb1b5e854d91c7ed768778db9, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4187572855725672431, guid: 27dc3cdeb1b5e854d91c7ed768778db9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
