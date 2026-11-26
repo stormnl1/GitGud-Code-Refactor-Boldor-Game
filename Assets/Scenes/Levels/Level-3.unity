@@ -1843,6 +1843,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3514768225275018606, guid: 4796fec2894d88c4c9b6947658b86aad, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 6896323103303121108}
+    - target: {fileID: 3514768225275018606, guid: 4796fec2894d88c4c9b6947658b86aad, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 732538277}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2579,6 +2587,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3514768225275018606, guid: 4796fec2894d88c4c9b6947658b86aad, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 6896323103303121108}
+    - target: {fileID: 3514768225275018606, guid: 4796fec2894d88c4c9b6947658b86aad, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 732538277}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4203,6 +4219,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3514768225275018606, guid: 4796fec2894d88c4c9b6947658b86aad, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 6896323103303121108}
+    - target: {fileID: 3514768225275018606, guid: 4796fec2894d88c4c9b6947658b86aad, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 732538277}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4900,6 +4924,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3514768225275018606, guid: 4796fec2894d88c4c9b6947658b86aad, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 6896323103303121108}
+    - target: {fileID: 3514768225275018606, guid: 4796fec2894d88c4c9b6947658b86aad, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 732538277}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6643,10 +6675,6 @@ PrefabInstance:
     - target: {fileID: 8489907649613891368, guid: 6a897aecee3356746bd07f55e1571cde, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 8489907649613891368, guid: 6a897aecee3356746bd07f55e1571cde, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

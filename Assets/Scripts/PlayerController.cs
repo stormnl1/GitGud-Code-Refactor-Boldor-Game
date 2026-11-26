@@ -127,12 +127,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Restore overlay menu functionality using New Input System
     public void OpenOverlayMenu(InputAction.CallbackContext context) // Escape
     {
         if (context.performed && overlayMenu != null)
         {
-            overlayMenu.SetActive(!overlayMenu.activeSelf);
+            overlayMenu.SetActive(overlayMenu);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 

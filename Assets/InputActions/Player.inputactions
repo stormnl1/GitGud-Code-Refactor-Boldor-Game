@@ -85,6 +85,16 @@
                     "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
+                },
+                {
+                    "name": "OpenOverlayMenu",
+                    "type": "Button",
+                    "id": "841d12eb-ba9c-4404-b6fc-3c45d333d9e4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -173,6 +183,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DashBoost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "141f1613-3f19-46d7-a431-9029beb4a13d",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenOverlayMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

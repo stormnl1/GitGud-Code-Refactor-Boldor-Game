@@ -19,5 +19,10 @@ public class WinScreen : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void ToNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }
 

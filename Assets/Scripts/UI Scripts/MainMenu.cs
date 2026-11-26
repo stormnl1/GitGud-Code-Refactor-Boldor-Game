@@ -25,16 +25,16 @@ public class MainMenu : MonoBehaviour
 
     private const string SkinKey = "PlayerSkinIndex";
 
-    [Header("Optional: menu preview character")]
+    [Header("Menu preview character")]
     [SerializeField] private PlayerSkin previewPlayerSkin;
 
-    // Hook these up to your 4 buttons: SelectSkin(0), SelectSkin(1), ...
+    // Hook these up to buttons: SelectSkin(0), SelectSkin(1), ...
     public void SelectSkin(int index)
     {
         PlayerPrefs.SetInt(SkinKey, index);
         PlayerPrefs.Save(); // forces write to disk now
 
-        // Optional: update preview model in the menu
+        // Update preview model in the menu
         if (previewPlayerSkin != null)
             previewPlayerSkin.ApplySkin(index);
     }

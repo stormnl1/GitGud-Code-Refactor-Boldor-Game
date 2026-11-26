@@ -306,11 +306,8 @@ MonoBehaviour:
   mouseSensitivity: 0.1
   maxDashSpeed: 100
   dashCooldown: 0.5
-  dashForceGround: 1000
-  dashForceAir: 1000
   destroySpeed: 20
   groundPoundCooldown: 0.5
-  playerSpeed: 0
 --- !u!114 &2897457500035892973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,6 +479,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fb30a702-8c26-42eb-b3bb-4d488d7e9eb5
     m_ActionName: 'Player/DashBoost[/Keyboard/shift]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8565920201774475229}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OpenOverlayMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 841d12eb-ba9c-4404-b6fc-3c45d333d9e4
+    m_ActionName: 'Player/OpenOverlayMenu[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

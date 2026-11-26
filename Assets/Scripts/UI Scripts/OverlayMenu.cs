@@ -8,6 +8,8 @@ public class OverlayMenu : MonoBehaviour
     public void ResumeGame()
     {
         overlayMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void BackToMenu()
