@@ -304,7 +304,7 @@ MonoBehaviour:
   groundPoundForce: 1500
   dashForce: 1000
   mouseSensitivity: 0.1
-  maxDashSpeed: 100
+  maxDashSpeed: 20
   dashCooldown: 0.5
   destroySpeed: 20
   groundPoundCooldown: 0.5

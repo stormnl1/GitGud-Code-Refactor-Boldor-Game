@@ -21032,10 +21032,6 @@ PrefabInstance:
       propertyPath: overlayMenu
       value: 
       objectReference: {fileID: 1521595634}
-    - target: {fileID: 8565920201774475229, guid: 6b72be29c79153a4da3434c172c0bec6, type: 3}
-      propertyPath: maxDashSpeed
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
