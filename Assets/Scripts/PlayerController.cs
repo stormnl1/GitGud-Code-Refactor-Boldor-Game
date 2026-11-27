@@ -90,21 +90,9 @@ public class PlayerController : MonoBehaviour
 
     public void DashBoost(InputAction.CallbackContext context) // Shift
     {
-        if (context.performed &&
-            Time.time >= lastDashTime + dashCooldown &&
-            playerSpeed < maxDashSpeed)
+        if (context.performed && Time.time >= lastDashTime + dashCooldown && playerSpeed < maxDashSpeed)
         {
-            // Use different dash forces depending on whether grounded
-            if (isGrounded)
-            {
-                rb.AddForce(cameraPivot.forward * dashForce, ForceMode.Impulse);
-            }
-            else
-            {
-                rb.AddForce(cameraPivot.forward * dashForce, ForceMode.Impulse);
-            }
-
-            lastDashTime = Time.time;
+            rb.AddForce(cameraPivot.forward * dashForce, ForceMode.Impulse);
         }
     }
 
@@ -159,30 +147,30 @@ public class PlayerController : MonoBehaviour
     private void MovePlayer()
     {
         // Get camera directions
-        Vector3 forward = cameraPivot.forward;
-        Vector3 right = cameraPivot.right;
+        Vector3 _forward = cameraPivot.forward;
+        Vector3 _right = cameraPivot.right;
 
         // Remove vertical components
-        forward.y = 0f;
-        right.y = 0f;
+        _forward.y = 0f;
+        _right.y = 0f;
 
         Vector3 movement = Vector3.zero;
 
         if (forwardPressed)
         {
-            movement += forward;
+            movement += _forward;
         }
         if (backwardPressed)
         {
-            movement -= forward;
+            movement -= _forward;
         }
         if (leftPressed)
         {
-            movement -= right;
+            movement -= _right;
         }
         if (rightPressed)
         {
-            movement += right;
+            movement += _right;
         }
 
         rb.AddForce(movement * moveSpeed, ForceMode.Acceleration);
@@ -190,11 +178,11 @@ public class PlayerController : MonoBehaviour
 
     private void CameraRotation()
     {
-        float mouseX = lookInput.x * mouseSensitivity;
-        float mouseY = lookInput.y * mouseSensitivity;
+        float _mouseX = lookInput.x * mouseSensitivity;
+        float _mouseY = lookInput.y * mouseSensitivity;
 
-        cameraYaw += mouseX;
-        cameraPitch -= mouseY;
+        cameraYaw += _mouseX;
+        cameraPitch -= _mouseY;
 
         cameraPitch = Mathf.Clamp(cameraPitch, cameraMinPitch, cameraMaxPitch);
 
